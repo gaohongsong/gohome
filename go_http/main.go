@@ -1,4 +1,4 @@
-package go_http
+package main
 /*
 	net/http包的基本使用方法
 */
