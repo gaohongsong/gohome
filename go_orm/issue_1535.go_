@@ -1,0 +1,53 @@
+package main
+
+import (
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+)
+
+var db *gorm.DB
+
+func init() {
+	var err error
+	db, err = gorm.Open("mysql", "root:root@/gorm?charset=utf8&parseTime=True")
+	if err != nil {
+		panic(err)
+	}
+	db.LogMode(true)
+}
+
+type Product struct {
+	gorm.Model
+	Name string
+	Code string
+}
+
+type User struct {
+	gorm.Model
+	FirstName string
+	LastName  string
+	Email     string
+	Password  string
+	Products  []UserProduct
+}
+
+type UserProduct struct {
+	gorm.Model
+	User      User                                                // Belongs To
+	UserID    uint     `sql:"REFERENCES users(id)"`    // Foreign key
+	Product   Product                                             // Belongs To
+	ProductID uint     `sql:"REFERENCES products(id)"` // Foreign key
+}
+
+func main() {
+	db.AutoMigrate(&User{}, &Product{}, &UserProduct{})
+	// Foreign keys
+	db.Model(&UserProduct{}).AddForeignKey("user_id", "users(id)", "CASCADE", "RESTRICT")
+	db.Model(&UserProduct{}).AddForeignKey("product_id", "products(id)", "CASCADE", "RESTRICT")
+
+	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(
+		&User{},
+		&Product{},
+		&UserProduct{},
+	)
+}
