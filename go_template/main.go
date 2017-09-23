@@ -61,4 +61,13 @@ func main() {
     tIfElse := template.New("template test")
     tIfElse = template.Must(tIfElse.Parse("if-else demo: {{if `anything`}} if部分 {{else}} else部分.{{end}}\n"))
     tIfElse.Execute(os.Stdout, nil)
+
+
+    tTplVar := template.New("template test")
+    tTplVar = template.Must(tTplVar.Parse(`
+				{{with $x := "<img src='abcdef'/>"}}{{$x | html}}{{end}}
+				{{with $x := "abcdefg" | printf "%x"}}{{$x}}{{end}}
+    			{{with $x := "abcdefg"}} {{printf "%s" $x}} {{$x | printf "%v"}} {{end}}
+    `))
+    tTplVar.Execute(os.Stdout, nil)
 }
