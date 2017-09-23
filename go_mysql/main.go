@@ -12,11 +12,11 @@ import (
 type dict map[string]interface{}
 
 var database = dict{
-	"name": "gem2",
+	"name": "django-simple",
 	"host": "localhost",
 	"port": 3306,
 	"user": "root",
-	"password": "root",
+	"password": "bk@321",
 }
 
 /* 打印字典 */

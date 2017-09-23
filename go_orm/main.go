@@ -12,10 +12,10 @@ type dict map[string]interface{}
 
 var DATABASE = dict{
 	"name":     "gorm",
-	"host":     "127.0.0.1",
+	"host":     "db",
 	"port":     3306,
 	"user":     "root",
-	"password": "root",
+	"password": "bk@321",
 }
 
 type User struct {

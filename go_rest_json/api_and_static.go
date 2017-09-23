@@ -30,8 +30,8 @@ func main() {
 
 	log.Printf("os: %s, file: %s, static: %s\n", osCurDir, fileCurDir, staticDir)
 
-	//http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("."))))
-	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir(staticDir))))
+	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("."))))
+	//http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir(staticDir))))
 
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }

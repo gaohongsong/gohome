@@ -24,7 +24,7 @@ type Impl struct {
 // db连接初始化
 func (i *Impl) InitDB() {
     var err error
-    i.DB, err = gorm.Open("mysql", "root:root@/gorm?charset=utf8&parseTime=True")
+    i.DB, err = gorm.Open("mysql", "root:bk@321@tcp(db:3306)/gorm?charset=utf8&parseTime=True")
     if err != nil {
         log.Fatalf("Got error when connect database, the error is '%v'", err)
     }
@@ -128,6 +128,6 @@ func main() {
         log.Fatal(err)
     }
     api.SetApp(router)
-    log.Fatal(http.ListenAndServe(":8080", api.MakeHandler()))
+    log.Fatal(http.ListenAndServe(":8000", api.MakeHandler()))
 }
 
