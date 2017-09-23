@@ -14,17 +14,16 @@ func init() {
 func main() {
     // 声明模板内容
     const tpl = `
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{{.Title}}</title>
-    </head>
-    <body>
-        {{range .Items}}<div>{{ . }}</div>{{else}}<div><strong>no rows</strong></div>{{end}}
-    </body>
-</html>`
-
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>{{.Title}}</title>
+            </head>
+            <body>
+                {{range .Items}}<div>{{ . }}</div>{{else}}<div><strong>no rows</strong></div>{{end}}
+            </body>
+        </html>`
     check := func(err error) {
         if err != nil {
             log.Fatal(err)
