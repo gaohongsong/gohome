@@ -1,7 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %}The current time{% endblock %}
+{% block head %}
+    {% autoescape off %}
+        {{ block.Super }}
+    {% endautoescape %}
+    <title>局部替换 block.Super</title>
+{% endblock %}
 
 {% block content %}
-<p>It is now {{ current_date }}.</p>
+<div class="container">
+    <p>It is now {{ current_date }}.</p>
+    <p>Todos</p>
+    <ul>
+    {% for todo in todos %}
+        {% if !todo.ok %}
+        <li>{{ todo.name|upper }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}
