@@ -1,0 +1,46 @@
+「开始」菜单@
+AppData/
+Application Data@
+Contacts/
+Cookies@
+Desktop/
+Documents/
+dowload/
+Downloads/
+enum34-1.1.6-py2-none-any.whl
+etcd/
+etcd3-0.6.2.tar.gz
+Favorites/
+futures-3.1.1-py2-none-any.whl
+grpcio-1.4.0-cp27-cp27m-win_amd64.whl
+IntelGraphicsProfiles/
+java_error_in_pycharm.hprof
+Links/
+Local Settings@
+monotonic-1.3-py2.py3-none-any.whl
+Music/
+My Documents@
+NetHood@
+NTUSER.DAT
+ntuser.dat.LOG1
+ntuser.dat.LOG2
+NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TM.blf
+NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TMContainer00000000000000000001.regtrans-ms
+NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TMContainer00000000000000000002.regtrans-ms
+ntuser.ini
+ntuser.pol
+Pictures/
+PrintHood@
+protobuf-3.4.0-py2.py3-none-any.whl
+pyhton-etcdv3.tar.gz
+Recent@
+Saved Games/
+Searches/
+SendTo@
+setuptools-36.3.0-py2.py3-none-any.whl
+six-1.10.0-py2.py3-none-any.whl
+Templates@
+tenacity-4.4.0.tar.gz
+test.xt
+Videos/
+VirtualBox VMs/
