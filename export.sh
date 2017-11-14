@@ -1,5 +1,5 @@
 #!/bin/sh
 
-export GOROOT=/ssd/go1.9
+export GOROOT=/c/ssd/go1.9
 export PATH=$PATH:$GOROOT/bin
-export GOPATH=/ssd/gohome
+export GOPATH=/c/ssd/gohome
