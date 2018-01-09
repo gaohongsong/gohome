@@ -60,6 +60,14 @@ func one(xPtr *int) {
 	*xPtr = 1
 }
 
+// recursion
+func factorial(x uint) uint {
+	if x == 0 {
+		return 1
+	}
+	return x * factorial(x-1)
+}
+
 func main() {
 	// do third
 	defer func() {
