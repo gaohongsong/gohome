@@ -5,9 +5,22 @@ import (
 	"math"
 )
 
-type Circle struct {
-	r    float64
+type Person struct {
 	name string
+}
+
+func (p *Person) talk() {
+	fmt.Println("Hi, my name is", p.name)
+}
+
+// Embedded types
+type Boss struct {
+	Person
+	company string
+}
+
+func (b *Boss) talk() {
+	fmt.Println("Hi, i am boss of", b.company)
 }
 
 func circleArea(c Circle) float64 {
@@ -22,27 +35,28 @@ func circleArea1(c *Circle) float64 {
 	return ret
 }
 
+type Circle struct {
+	r    float64
+	name string
+}
+
+type Rectangle struct {
+	width, height float64
+	name string
+}
+
 // Methods
 func (c *Circle) area() float64 {
 	return math.Pi * c.r * c.r
 }
 
-type Person struct {
-	name string
+func (rec *Rectangle) area() float64 {
+	return rec.width * rec.height
 }
 
-func (p *Person) talk()  {
-	fmt.Println("Hi, my name is", p.name)
-}
-
-// Embedded types
-type Boss struct {
-	Person
-	company string
-}
-
-func (b *Boss) talk() {
-	fmt.Println("Hi, i am boss of", b.company)
+// Circle and Rectangle implement Shape interface
+type Shape interface {
+	area() float64
 }
 
 func main() {
@@ -77,4 +91,12 @@ func main() {
 	//Hi, my name is miya
 	b.Person.talk()
 	fmt.Printf("b.name: %v\n", b.name)
+
+	shapes := []Shape {
+		&Circle{1, "c1"},
+		&Rectangle{10, 20, "r1"},
+	}
+	for _, s := range shapes{
+		fmt.Printf("Area: %v\n", s.area())
+	}
 }
