@@ -5,7 +5,7 @@ import (
 	"strings"
 	"os"
 	"path/filepath"
-	"github.com/kataras/iris/core/errors"
+	"errors"
 	"container/list"
 	"sort"
 )
