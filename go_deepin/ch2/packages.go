@@ -8,6 +8,11 @@ import (
 	"errors"
 	"container/list"
 	"sort"
+	"hash/crc32"
+	"io"
+	"crypto/sha1"
+	"crypto/md5"
+	"encoding/hex"
 )
 
 func ls(p string) error {
@@ -40,10 +45,54 @@ func (this IntArray) Swap(i, j int) {
 	this[i], this[j] = this[j], this[i]
 }
 
+// crc32
+func getCrc32Hash(filename string) (uint32, error) {
+
+	// open the file and defer to close it
+	f, err := os.Open(filename)
+	if err != nil {
+		return 0, err
+	}
+	defer f.Close()
+
+	// create crc32 hasher
+	crc32Hasher := crc32.NewIEEE()
+
+	// copy file content into hasher
+	if _, err := io.Copy(crc32Hasher, f); err != nil {
+		return 0, err
+	}
+
+	// just a test
+	{
+
+		sha1Hasher := sha1.New()
+		if _, err := io.Copy(sha1Hasher, f); err != nil {
+			return 0, err
+		}
+
+		md5Hasher := md5.New()
+		if _, err := io.Copy(md5Hasher, f); err != nil {
+			return 0, err
+		}
+
+		// convert bytes to hex string
+		md5Str := hex.EncodeToString(md5Hasher.Sum(nil))
+		crc32Str := hex.EncodeToString(crc32Hasher.Sum(nil))
+
+		fmt.Printf("SHA1: % x\n", sha1Hasher.Sum(nil))
+		fmt.Printf("MD5: %v\n", md5Str)
+		fmt.Printf("crc32Str: %v\n", crc32Str)
+	}
+
+	return crc32Hasher.Sum32(), nil
+
+}
+
 func main() {
 
 	//sort
-	arr2 := []int{3,54,7,843,2,87,54,1}
+	arr2 := []int{3, 54, 7, 843, 2, 87, 54, 1}
 	sort.Ints(arr2)
 	//sort.Sort(IntArray(arr2))
 	fmt.Println(arr2)
@@ -112,4 +161,12 @@ func main() {
 	for e := lst.Front(); e != nil; e = e.Next() {
 		fmt.Println(e.Value)
 	}
+
+	//hash
+	fh, err := getCrc32Hash("test.txt")
+	if err != nil {
+		fmt.Println("getCrc32Hash Failed: ", err)
+		return
+	}
+	fmt.Println(fh)
 }
